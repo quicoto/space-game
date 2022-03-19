@@ -4,16 +4,24 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Space Game</title>
+  <title>Space Game 🚀</title>
   <link rel="stylesheet" href="./styles.css?ver=1.0.0">
 </head>
 <body>
   <main>
     <header>
-      <h1>Space Game</h1>
+      <h1>Space <span class="inline-block">Game 🚀</span></h1>
     </header>
 
-    <fieldset>
+    <div class="mars"></div>
+
+    <div class="graphics">
+      <img src="./assets/meteor.svg" class="meteor" />
+      <img src="./assets/astronaut.svg" class="astronaut" />
+      <img src="./assets/spaceship.svg" class="spaceship" />
+    </div>
+
+    <div class="panel">
       Fuel: <span id="fuel-total">0</span>
       <p id="fuel-auto-producers-wrapper" hidden>Auto producers: <span id="fuel-auto-producers">0</span></p>
       <p>
@@ -22,7 +30,7 @@
       <p>
         <button type="button" id="fuel-auto-producers-add" hidden>Add auto producer</button>
       </p>
-    </fieldset>
+    </div>
 
     <footer>
       With ❤️ from Ricard Torres
