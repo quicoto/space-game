@@ -1,2 +1,9 @@
+$content-z-index: 1;
+
+@import 'colors';
+@import 'utils';
 @import 'general';
+@import 'header';
+@import 'panels';
+@import 'graphics';
 @import 'footer';

@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "npm run build:js && npm run build:html && npm run build:css",
+    "build": "npm run build:js && npm run build:html && npm run build:assets && npm run build:css",
+    "build:assets": "node commands/assets.js",
     "build:html": "node commands/html.js",
     "build:css": "sass --no-source-map --style=compressed src/scss/styles.scss dist/styles.css",
     "build:js": "esbuild src/js/main.js --bundle --minify --outfile=dist/main.min.js",
@@ -16,6 +17,7 @@
   "license": "ISC",
   "dependencies": {
     "esbuild": "^0.14.27",
+    "fs-extra": "^10.0.1",
     "sass": "^1.49.9"
   },
   "devDependencies": {

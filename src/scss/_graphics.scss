@@ -1,0 +1,48 @@
+@keyframes floating {
+  from {
+    transform: translateY(0px);
+  }
+
+  65% {
+    transform: translateY(15px);
+  }
+
+  to {
+    transform: translateY(-0px);
+  }
+}
+
+.graphics {
+  pointer-events: none;
+  z-index: -1;
+}
+
+.mars {
+  background: url('./assets/mars.svg') no-repeat bottom center;
+  background-size: cover;
+  bottom: 0;
+  height: 27vmin;
+  left: 0;
+  position: absolute;
+  right: 0;
+}
+
+.meteor {
+  position: absolute;
+  right: 2vmin;
+  top: 16vmin;
+}
+
+.astronaut {
+  position: absolute;
+  top: 18vmin;
+  left: 10vmin;
+  height: 30vmin;
+  animation: floating 3s infinite ease-in-out;
+}
+
+.spaceship {
+  position: absolute;
+  bottom: 15vmin;
+  right: 24vmin;
+}
