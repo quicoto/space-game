@@ -9,14 +9,35 @@ const gauges = {
   fuelCapacity: null,
 };
 
-function updatefuel() {
-  if (_.fuel.autoProducer > 0) {
-    _.fuel.total += 0.005 * _.fuel.autoProducer;
-    $.fuelAutoProducers.innerText = _.fuel.autoProducer;
+function updateSpeed() {
+  if (_.navigation.ingnition) {
+    _.navigation.speed = 1;
+  } else {
+    _.navigation.speed = 0;
   }
+
+  $.navigationSpeed.innerText = _.navigation.speed.toFixed(0);
+}
+
+function updatefuel() {
+  if (_.navigation.ingnition) {
+    _.fuel.total -= _.navigation.consumption;
+  }
+
+  if (_.fuel.autoProducer > 0) {
+    _.fuel.total += _.fuel.baseProduction * _.fuel.autoProducer;
+  }
+
+  $.fuelAutoProducers.innerText = _.fuel.autoProducer;
 
   if (_.fuel.total >= _.fuel.capacity) {
     _.fuel.total = _.fuel.capacity;
+  }
+
+  if (_.fuel.total <= 0) {
+    _.fuel.total = 0;
+    _.navigation.ingnition = false;
+    $.navigationIngnition.checked = false;
   }
 
   $.fuelPercentage.innerText = ((_.fuel.total * 100) / _.fuel.capacity).toFixed(1);
@@ -25,14 +46,29 @@ function updatefuel() {
 }
 
 function setEventListeners() {
-  $.fuelProduceButton.addEventListener('click', () => { _.fuel.total += 1; updatefuel(); });
-  $.fuelAutoProducersAddButton.addEventListener('click', () => { _.fuel.autoProducer += 1; updatefuel(); });
+  $.navigationIngnition.addEventListener('change', () => {
+    // Can't start engine if no fuel
+    if (_.fuel.total <= 0) {
+      $.navigationIngnition.checked = false;
+    }
+
+    _.navigation.ingnition = $.navigationIngnition.checked;
+  });
+
+  $.fuelProduceButton.addEventListener('click', () => { _.fuel.total += 1; });
+  $.fuelAutoProducersAdd.addEventListener('click', () => { _.fuel.autoProducer += 1; });
+  $.fuelAutoProducersRemove.addEventListener('click', () => {
+    if (_.fuel.autoProducer > 0) {
+      _.fuel.autoProducer -= 1;
+    }
+  });
 }
 
 function checkUpgrades() {
   // FUEL
   if (_.fuel.total >= _.fuel.autoProducerUnlock) {
-    $.fuelAutoProducersAddButton.hidden = false;
+    $.fuelAutoProducersAdd.hidden = false;
+    $.fuelAutoProducersRemove.hidden = false;
     $.fuelAutoProducersWrapper.hidden = false;
   }
 }
@@ -75,6 +111,7 @@ function init() {
   setEventListeners();
   setInterval(() => {
     updatefuel();
+    updateSpeed();
     checkUpgrades();
   }, 10);
   twemoji.parse(document.body);

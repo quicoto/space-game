@@ -1,8 +1,10 @@
 $content-z-index: 1;
+$desktop: 768px;
 
 @import 'colors';
 @import 'utils';
 @import 'buttons';
+@import 'toggle';
 @import 'general';
 @import 'header';
 @import 'gauge';

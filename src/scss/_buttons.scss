@@ -18,8 +18,18 @@
   vertical-align: middle;
 
   &--primary {
-    color: #f8f9fa;
-    border-color: #f8f9fa;
+    color: $body-color;
+    border-color: $body-color;
+  }
+
+  &--success {
+    color: $color-green;
+    border-color: $color-green;
+  }
+
+  &--danger {
+    color: $color-red;
+    border-color: $color-red;
   }
 }
 

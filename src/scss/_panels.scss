@@ -1,16 +1,27 @@
 .panels {
   display: flex;
   margin-bottom: 2rem;
+
+  @media (min-width: $desktop) {
+    gap: 1rem;
+  }
 }
 
 .panel {
   border: 1px solid;
-  color: white;
   padding: 1rem;
   background: $main-background;
   position: relative;
-  width: 25%;
+  width: 100%;
   text-align: center;
   z-index: $content-z-index;
+
+  @media (min-width: $desktop) {
+    width: 25%;
+  }
+
+  h2 {
+    margin: 0 0 0.5rem 0;
+  }
 }
 

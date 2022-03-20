@@ -1,8 +1,28 @@
 footer {
-  color: white;
+  align-items: center;
   background: $main-background;
-  padding: 1rem 2rem;
+  color: $body-color;
+  flex-wrap: wrap;
+  display: flex;
   margin-bottom: 1rem;
+  padding: 1rem 2rem;
   position: relative;
   z-index: $content-z-index;
+  justify-content: space-between;
+
+  @media (min-width: $desktop) {
+    flex-wrap: nowrap;
+  }
+
+  div {
+    align-self: baseline;
+
+    &:first-child {
+      margin-bottom: 1rem;
+
+      @media (min-width: $desktop) {
+        margin-bottom: 0;
+      }
+    }
+  }
 }

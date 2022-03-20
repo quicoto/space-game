@@ -6,6 +6,7 @@ html {
 body {
   background-attachment: fixed;
   background-image: url('./assets/star.svg'), linear-gradient(to bottom, #05007A, #4D007D);
+  color: $body-color;
   font-size: 1rem;
   margin: 0;
   padding: 1rem;
@@ -18,7 +19,7 @@ main {
 
 hr {
   border: 1px solid;
-  color: white;
+  color: $body-color;
   margin: 1rem 0;
 }
 
