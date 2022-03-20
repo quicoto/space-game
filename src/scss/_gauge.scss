@@ -1,0 +1,43 @@
+.gauge-container {
+  display: block;
+  height: 100px;
+  margin: 0 auto;
+  width: 150px;
+
+  > .gauge {
+    .dial {
+      stroke: #eee;
+      stroke-width: 2;
+      fill: rgba(0, 0, 0, 0);
+    }
+
+    .value {
+      stroke: #2fe3ff;
+      stroke-width: 2;
+      fill: rgba(0, 0, 0, 0);
+    }
+
+    .value-text {
+      fill: #2fe3ff;
+      font-weight: bold;
+      font-size: 1em;
+    }
+
+    .dial {
+      stroke: #334455;
+      stroke-width: 10;
+    }
+
+    .value {
+      stroke: orange;
+      stroke-dasharray: none;
+      stroke-width: 13;
+    }
+
+    .value-text {
+      fill: #ccc;
+      font-weight: 100;
+      font-size: 1em;
+    }
+  }
+}

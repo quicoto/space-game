@@ -23,7 +23,7 @@
   bottom: 0;
   height: 27vmin;
   left: 0;
-  position: absolute;
+  position: fixed;
   right: 0;
 }
 
@@ -34,7 +34,7 @@
 }
 
 .astronaut {
-  position: absolute;
+  position: fixed;
   top: 18vmin;
   left: 10vmin;
   height: 30vmin;
@@ -42,7 +42,7 @@
 }
 
 .spaceship {
-  position: absolute;
+  position: fixed;
   bottom: 15vmin;
   right: 24vmin;
 }

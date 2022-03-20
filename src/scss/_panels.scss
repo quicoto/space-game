@@ -1,8 +1,16 @@
+.panels {
+  display: flex;
+  margin-bottom: 2rem;
+}
+
 .panel {
   border: 1px solid;
   color: white;
   padding: 1rem;
   background: $main-background;
   position: relative;
+  width: 25%;
+  text-align: center;
   z-index: $content-z-index;
 }
+

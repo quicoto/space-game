@@ -1,20 +1,28 @@
 html {
   font-size: 22px;
   font-family: sans-serif;
-  height: 100%;
 }
 
 body {
   background-attachment: fixed;
   background-image: url('./assets/star.svg'), linear-gradient(to bottom, #05007A, #4D007D);
   font-size: 1rem;
-  height: 100%;
   margin: 0;
-  overflow: hidden;
   padding: 1rem;
 }
 
 main {
   margin: 0 auto;
   max-width: 1200px;
+}
+
+hr {
+  border: 1px solid;
+  color: white;
+  margin: 1rem 0;
+}
+
+.emoji {
+  height: 1em;
+  transform: translateY(5px);
 }
