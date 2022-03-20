@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,6 +8,7 @@
   <title>Space Game 🚀</title>
   <link rel="stylesheet" href="./styles.css?ver=1.0.0">
 </head>
+
 <body>
   <main>
     <header>
@@ -21,22 +23,39 @@
       <img src="./assets/spaceship.svg" class="spaceship" />
     </div>
 
-    <div class="panel">
-      Fuel: <span id="fuel-total">0</span>
-      <p id="fuel-auto-producers-wrapper" hidden>Auto producers: <span id="fuel-auto-producers">0</span></p>
-      <p>
-        <button type="button" id="fuel-produce">Produce fuel</button>
-      </p>
-      <p>
-        <button type="button" id="fuel-auto-producers-add" hidden>Add auto producer</button>
-      </p>
+    <div class="panels">
+      <div class="panel panel--fuel">
+        <h2>Fuel ⛽️</h2>
+        <p>
+          <button type="button" class="btn btn--primary" id="fuel-produce">Produce fuel</button>
+        </p>
+        <div id="fuel-capacity-gauge" class="gauge-container"></div>
+        <p>
+          <span id="fuel-total">0</span> of <span id="fuel-capacity">0</span>
+        </p>
+        <p>
+          <span id="fuel-percentage">0</span>% capacity
+        </p>
+        <hr>
+        <p id="fuel-auto-producers-wrapper" hidden>Auto producers: <span id="fuel-auto-producers">0</span></p>
+        <p>
+          <button type="button" class="btn btn--primary" id="fuel-auto-producers-add" hidden>Add auto producer</button>
+        </p>
+      </div>
     </div>
 
+
     <footer>
-      With ❤️ from Ricard Torres
+      <p>
+        With ❤️ from Ricard Torres
+      </p>
+      <p>
+        Version: 1.0.0
+      </p>
     </footer>
   </main>
 
   <script src="./main.min.js?ver=1.0.0" defer></script>
 </body>
+
 </html>
