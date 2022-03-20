@@ -1,7 +1,7 @@
 const _ = {
   navigation: {
     ingnition: false,
-    consumption: 0.010, // Should be lower than fuel.baseProdicton
+    consumption: 0.010,
     speed: 0,
   },
   fuel: {

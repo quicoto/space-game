@@ -11,6 +11,7 @@ const $ = {
   navigationIngnition: document.getElementById('navigation-ignition'),
   navigationConsumption: document.getElementById('navigation-consumption'),
   navigationSpeed: document.getElementById('navigation-speed'),
+  saveGame: document.getElementById('save-game'),
 };
 
 export default $;

@@ -5,9 +5,28 @@ import colors from './colors';
 
 const Gauge = require('svg-gauge');
 
+const projectKey = 'space-game';
 const gauges = {
   fuelCapacity: null,
 };
+
+function loadSavedGame() {
+  const savedGame = localStorage.getItem(`${projectKey}save`);
+
+  if (savedGame) {
+    Object.assign(_, JSON.parse(savedGame));
+  }
+}
+
+function saveGame() {
+  localStorage.setItem(`${projectKey}save`, JSON.stringify(_));
+
+  $.saveGame.innerText = 'Game Saved!';
+
+  setTimeout(() => {
+    $.saveGame.innerText = 'Save';
+  }, 5000);
+}
 
 function updateSpeed() {
   if (_.navigation.ingnition) {
@@ -62,6 +81,8 @@ function setEventListeners() {
       _.fuel.autoProducer -= 1;
     }
   });
+
+  $.saveGame.addEventListener('click', saveGame);
 }
 
 function checkUpgrades() {
@@ -106,6 +127,7 @@ function initGauges() {
 }
 
 function init() {
+  loadSavedGame();
   setDefaultValues();
   initGauges();
   setEventListeners();
@@ -114,6 +136,9 @@ function init() {
     updateSpeed();
     checkUpgrades();
   }, 10);
+  setInterval(() => {
+    saveGame();
+  }, 60 * 5 * 1000);
   twemoji.parse(document.body);
 }
 
