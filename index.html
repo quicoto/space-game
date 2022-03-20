@@ -24,6 +24,16 @@
     </div>
 
     <div class="panels">
+      <div class="panel panel--navigation">
+        <h2>Navigation 🎛</h2>
+
+        <h3>Ignition</h3>
+        <input class="tgl tgl-flat" id="navigation-ignition" type="checkbox"/>
+        <label class="tgl-btn" for="navigation-ignition"></label>
+
+        <p class="text-left"><strong>Consumption</strong>: <span class="inline-block"><span id="navigation-consumption">0</span> per cycle</span></p>
+        <p class="text-left"><strong>Speed</strong>: <span class="inline-block"><span id="navigation-speed">0</span> km/s</span></p>
+      </div>
       <div class="panel panel--fuel">
         <h2>Fuel ⛽️</h2>
         <p>
@@ -39,19 +49,20 @@
         <hr>
         <p id="fuel-auto-producers-wrapper" hidden>Auto producers: <span id="fuel-auto-producers">0</span></p>
         <p>
-          <button type="button" class="btn btn--primary" id="fuel-auto-producers-add" hidden>Add auto producer</button>
+          <button type="button" class="btn btn--success" id="fuel-auto-producers-add" hidden title="Add auto producer">Add</button>
+          <button type="button" class="btn btn--danger" id="fuel-auto-producers-remove" hidden title="Remove auto producer">Remove</button>
         </p>
       </div>
     </div>
 
 
     <footer>
-      <p>
+      <div>
         With ❤️ from Ricard Torres
-      </p>
-      <p>
+      </div>
+      <div>
         Version: 1.0.0
-      </p>
+      </div>
     </footer>
   </main>
 
