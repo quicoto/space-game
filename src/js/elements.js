@@ -1,4 +1,8 @@
 const $ = {
+  panels: document.getElementById('panels'),
+  captainsLog: document.getElementById('captains-log'),
+  captainsLogClose: document.getElementById('captains-log-close'),
+  version: document.getElementById('version'),
   fuelAutoProducers: document.getElementById('fuel-auto-producers'),
   fuelAutoProducersAdd: document.getElementById('fuel-auto-producers-add'),
   fuelAutoProducersRemove: document.getElementById('fuel-auto-producers-remove'),

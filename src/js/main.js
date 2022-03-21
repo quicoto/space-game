@@ -64,7 +64,17 @@ function updatefuel() {
   gauges.fuelCapacity.setValue(_.fuel.total.toFixed(2));
 }
 
+function toggleCapitansLog() {
+  $.captainsLog.hidden = !$.captainsLog.hidden;
+  $.panels.hidden = !$.panels.hidden;
+}
+
 function setEventListeners() {
+  $.captainsLogClose.addEventListener('click', toggleCapitansLog);
+  $.version.addEventListener('click', (domEvent) => {
+    domEvent.preventDefault();
+    toggleCapitansLog();
+  });
   $.navigationIngnition.addEventListener('change', () => {
     // Can't start engine if no fuel
     if (_.fuel.total <= 0) {

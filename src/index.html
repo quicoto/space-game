@@ -11,7 +11,8 @@
 
 <body>
   <main>
-    <header>
+
+    <header class="site-header">
       <h1>Space <span class="inline-block">Game 🚀</span></h1>
       <button class="btn btn--primary" title="Save game" id="save-game">Save</button>
     </header>
@@ -24,7 +25,7 @@
       <img src="./assets/spaceship.svg" class="spaceship" />
     </div>
 
-    <div class="panels">
+    <div class="panels" id="panels">
       <div class="panel panel--navigation">
         <h2>Navigation 🎛</h2>
 
@@ -56,13 +57,25 @@
       </div>
     </div>
 
+    <aside id="captains-log" hidden>
+      <header>
+        <h2>Captain's log</h2>
+        <span id="captains-log-close">X</span>
+      </header>
+
+      <h4>1.0.0</h4>
+      <p>Inital launch.</p>
+
+      <hr>
+    </aside>
+
 
     <footer>
       <div>
         With ❤️ from Ricard Torres
       </div>
       <div>
-        Version: %VERSION%
+        Version: <a href="#" id="version">%VERSION%</a>
       </div>
     </footer>
   </main>
