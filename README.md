@@ -2,10 +2,10 @@
 
 ## To Do
 
-- [ ] Add Captains Log (when clicking on the version, full page text?)
-- [ ] Fuel Auto producers have a cost of fuel
 - [ ] Add Thrusters for more speed
 - [ ] Thrusters have a cost of fuel
+- [ ] Add % of Galaxy explored
+  - [ ] Needs calculation of distance based on the speed, increment the distance by speed
 - [ ] Combat
 - [ ] Minerals for improvements
 - [ ] Shields

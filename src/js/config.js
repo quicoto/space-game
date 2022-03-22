@@ -7,6 +7,7 @@ const _ = {
   fuel: {
     autoProducerUnlock: 5,
     autoProducer: 0,
+    autoProducerCost: 5,
     baseProduction: 0.005,
     capacity: 10,
     total: 0,

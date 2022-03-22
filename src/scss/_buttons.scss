@@ -31,5 +31,11 @@
     color: $color-red;
     border-color: $color-red;
   }
+
+  &[disabled] {
+    cursor: not-allowed;
+    color: gray !important;
+    border-color: gray !important;
+  }
 }
 

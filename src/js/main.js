@@ -2,31 +2,18 @@ import twemoji from 'twemoji';
 import $ from './elements';
 import _ from './config';
 import colors from './colors';
+import {
+  costCalculator,
+  loadSavedGame,
+  saveGame,
+  resetGame,
+} from './utils';
 
 const Gauge = require('svg-gauge');
 
-const projectKey = 'space-game';
 const gauges = {
   fuelCapacity: null,
 };
-
-function loadSavedGame() {
-  const savedGame = localStorage.getItem(`${projectKey}save`);
-
-  if (savedGame) {
-    Object.assign(_, JSON.parse(savedGame));
-  }
-}
-
-function saveGame() {
-  localStorage.setItem(`${projectKey}save`, JSON.stringify(_));
-
-  $.saveGame.innerText = 'Game Saved!';
-
-  setTimeout(() => {
-    $.saveGame.innerText = 'Save';
-  }, 5000);
-}
 
 function updateSpeed() {
   if (_.navigation.ingnition) {
@@ -45,9 +32,16 @@ function updatefuel() {
 
   if (_.fuel.autoProducer > 0) {
     _.fuel.total += _.fuel.baseProduction * _.fuel.autoProducer;
+    $.fuelAutoProducersRemove.disabled = false;
+  } else {
+    $.fuelAutoProducersRemove.disabled = true;
   }
 
-  $.fuelAutoProducers.innerText = _.fuel.autoProducer;
+  if (_.fuel.total >= _.fuel.autoProducerCost) {
+    $.fuelAutoProducersAdd.disabled = false;
+  } else {
+    $.fuelAutoProducersAdd.disabled = true;
+  }
 
   if (_.fuel.total >= _.fuel.capacity) {
     _.fuel.total = _.fuel.capacity;
@@ -59,6 +53,8 @@ function updatefuel() {
     $.navigationIngnition.checked = false;
   }
 
+  $.fuelAutoProducers.innerText = _.fuel.autoProducer;
+  $.fuelAutoProducersCost.innerText = _.fuel.autoProducerCost;
   $.fuelPercentage.innerText = ((_.fuel.total * 100) / _.fuel.capacity).toFixed(1);
   $.fuelTotal.innerText = _.fuel.total.toFixed(2);
   gauges.fuelCapacity.setValue(_.fuel.total.toFixed(2));
@@ -67,6 +63,18 @@ function updatefuel() {
 function toggleCapitansLog() {
   $.captainsLog.hidden = !$.captainsLog.hidden;
   $.panels.hidden = !$.panels.hidden;
+}
+
+function addAutoProducer() {
+  _.fuel.autoProducer += 1;
+  _.fuel.total -= _.fuel.autoProducerCost;
+  _.fuel.autoProducerCost = costCalculator(_.fuel.autoProducer);
+}
+
+function removeAutoProducer() {
+  _.fuel.autoProducer -= 1;
+  _.fuel.autoProducerCost = costCalculator(_.fuel.autoProducer);
+  _.fuel.total += _.fuel.autoProducerCost;
 }
 
 function setEventListeners() {
@@ -85,21 +93,18 @@ function setEventListeners() {
   });
 
   $.fuelProduceButton.addEventListener('click', () => { _.fuel.total += 1; });
-  $.fuelAutoProducersAdd.addEventListener('click', () => { _.fuel.autoProducer += 1; });
-  $.fuelAutoProducersRemove.addEventListener('click', () => {
-    if (_.fuel.autoProducer > 0) {
-      _.fuel.autoProducer -= 1;
-    }
-  });
+  $.fuelAutoProducersAdd.addEventListener('click', addAutoProducer);
+  $.fuelAutoProducersRemove.addEventListener('click', removeAutoProducer);
 
-  $.saveGame.addEventListener('click', saveGame);
+  $.saveGame.addEventListener('click', () => {
+    saveGame(_);
+  });
+  $.resetGame.addEventListener('click', resetGame);
 }
 
 function checkUpgrades() {
   // FUEL
   if (_.fuel.total >= _.fuel.autoProducerUnlock) {
-    $.fuelAutoProducersAdd.hidden = false;
-    $.fuelAutoProducersRemove.hidden = false;
     $.fuelAutoProducersWrapper.hidden = false;
   }
 }
@@ -137,7 +142,7 @@ function initGauges() {
 }
 
 function init() {
-  loadSavedGame();
+  loadSavedGame(_);
   setDefaultValues();
   initGauges();
   setEventListeners();
@@ -147,7 +152,7 @@ function init() {
     checkUpgrades();
   }, 10);
   setInterval(() => {
-    saveGame();
+    saveGame(_);
   }, 60 * 5 * 1000);
   twemoji.parse(document.body);
 }
