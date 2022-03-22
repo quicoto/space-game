@@ -14,7 +14,10 @@
 
     <header class="site-header">
       <h1>Space <span class="inline-block">Game 🚀</span></h1>
-      <button class="btn btn--primary" title="Save game" id="save-game">Save</button>
+      <span>
+        <button class="btn btn--primary" title="Save game" id="save-game">Save</button>
+        <button class="btn btn--danger" title="Reset game" id="reset-game">Reset</button>
+      </span>
     </header>
 
     <div class="mars"></div>
@@ -49,11 +52,15 @@
           <span id="fuel-percentage">0</span>% capacity
         </p>
         <hr>
-        <p id="fuel-auto-producers-wrapper" hidden>Auto producers: <span id="fuel-auto-producers">0</span></p>
-        <p>
-          <button type="button" class="btn btn--success" id="fuel-auto-producers-add" hidden title="Add auto producer">Add</button>
-          <button type="button" class="btn btn--danger" id="fuel-auto-producers-remove" hidden title="Remove auto producer">Remove</button>
-        </p>
+
+        <div id="fuel-auto-producers-wrapper" class="text-left" hidden>
+          <p>Auto producers: <span id="fuel-auto-producers">0</span></p>
+          <p>Cost: <span id="fuel-auto-producers-cost">0</span> fuel</p>
+          <p>
+            <button type="button" class="btn btn--success" id="fuel-auto-producers-add" title="Add auto producer" disabled>Add</button>
+            <button type="button" class="btn btn--danger" id="fuel-auto-producers-remove" title="Remove auto producer" disabled>Remove</button>
+          </p>
+        </div>
       </div>
     </div>
 
