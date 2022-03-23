@@ -1,4 +1,4 @@
-#captains-log {
+#game-over {
   border: 1px solid;
   padding: 1rem;
   background: $main-background;
@@ -6,14 +6,4 @@
   margin-bottom: 1rem;
   width: 100%;
   z-index: $content-z-index;
-
-  header {
-    display: flex;
-    justify-content: space-between;
-  }
-
-  &-close {
-    cursor: pointer;
-    padding: 0 0 1rem 1rem;
-  }
 }

@@ -2,11 +2,18 @@
 
 ## To Do
 
-- [ ] Add Thrusters for more speed
-- [ ] Thrusters have a cost of fuel
-- [ ] Add % of Galaxy explored
-  - [ ] Needs calculation of distance based on the speed, increment the distance by speed
-- [ ] Combat
-- [ ] Minerals for improvements
-- [ ] Shields
-- [ ] Ship improvements
+- Upgrades (unlocks)
+  - After 120 km
+    - FUel Auto Producers can be bought
+    - Thrusters can be bought (with fuel cost)
+  - After 500 km
+    - Fuel Tanks increases capacity
+  - After 2000 km
+    - Minerals for improvements
+- Combat
+- Upgrades / Unlocks
+  - After 10 combats
+    - Shields
+  - After 50 comagts
+    - Other Ship improvements
+

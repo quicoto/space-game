@@ -11,21 +11,32 @@ import {
 
 const Gauge = require('svg-gauge');
 
+let mainInterval;
+let saveGameInterval;
+
 const gauges = {
   fuelCapacity: null,
 };
 
 function updateSpeed() {
   if (_.navigation.ingnition) {
-    _.navigation.speed = 1;
+    const basicThrusters = _.navigation.thursters.basic;
+    const superThrusters = _.navigation.thursters.super * 2;
+    const megaThrusters = _.navigation.thursters.mega * 4;
+
+    _.navigation.speed = basicThrusters + superThrusters + megaThrusters;
   } else {
     _.navigation.speed = 0;
   }
 
   $.navigationSpeed.innerText = _.navigation.speed.toFixed(0);
+
+  $.navigationThurstersBasic.innerText = _.navigation.thursters.basic;
+  $.navigationThurstersSuper.innerText = _.navigation.thursters.super;
+  $.navigationThurstersMega.innerText = _.navigation.thursters.mega;
 }
 
-function updatefuel() {
+function updateFuel() {
   if (_.navigation.ingnition) {
     _.fuel.total -= _.navigation.consumption;
   }
@@ -141,17 +152,50 @@ function initGauges() {
   });
 }
 
+function gameOver() {
+  $.progress.hidden = true;
+  $.panels.hidden = true;
+  $.gameOver.hidden = false;
+}
+
+function updateProgress() {
+  if (_.navigation.speed === 0) {
+    return;
+  }
+
+  _.galaxy.explored += _.navigation.speed;
+
+  // setInterval is 10, diving per 100 should give us 1 scond
+  _.navigation.distance += +(_.navigation.speed / 100).toFixed(3);
+
+  if (_.galaxy.explored >= _.galaxy.total) {
+    _.galaxy.explored = _.galaxy.total;
+
+    clearInterval(mainInterval);
+    clearInterval(saveGameInterval);
+
+    gameOver();
+  }
+
+  const percentage = ((_.galaxy.explored * 100) / _.galaxy.total).toFixed(0);
+
+  $.navigationDistance.innerText = _.navigation.distance.toFixed(0);
+  $.progressValue.innerText = percentage;
+  $.progressBar.style.width = `${percentage}%`;
+}
+
 function init() {
   loadSavedGame(_);
   setDefaultValues();
   initGauges();
   setEventListeners();
-  setInterval(() => {
-    updatefuel();
+  mainInterval = setInterval(() => {
+    updateProgress();
+    updateFuel();
     updateSpeed();
     checkUpgrades();
   }, 10);
-  setInterval(() => {
+  saveGameInterval = setInterval(() => {
     saveGame(_);
   }, 60 * 5 * 1000);
   twemoji.parse(document.body);

@@ -1,4 +1,8 @@
 const $ = {
+  gameOver: document.getElementById('game-over'),
+  progress: document.getElementById('progress'),
+  progressBar: document.getElementById('progress-bar'),
+  progressValue: document.getElementById('progress-value'),
   panels: document.getElementById('panels'),
   captainsLog: document.getElementById('captains-log'),
   captainsLogClose: document.getElementById('captains-log-close'),
@@ -16,6 +20,10 @@ const $ = {
   navigationIngnition: document.getElementById('navigation-ignition'),
   navigationConsumption: document.getElementById('navigation-consumption'),
   navigationSpeed: document.getElementById('navigation-speed'),
+  navigationDistance: document.getElementById('navigation-distance'),
+  navigationThurstersBasic: document.getElementById('navigation-thursters-basic'),
+  navigationThurstersSuper: document.getElementById('navigation-thursters-super'),
+  navigationThurstersMega: document.getElementById('navigation-thursters-mega'),
   saveGame: document.getElementById('save-game'),
   resetGame: document.getElementById('reset-game'),
 };
