@@ -28,6 +28,11 @@
       <img src="./assets/spaceship.svg" class="spaceship" />
     </div>
 
+    <div class="progress-wrapper" id="progress">
+      <span class="progress-text">Galaxy explored <span id="progress-value">0</span>%</span>
+      <div id="progress-bar" style="width: 0%;"></div>
+    </div>
+
     <div class="panels" id="panels">
       <div class="panel panel--navigation">
         <h2>Navigation 🎛</h2>
@@ -35,9 +40,17 @@
         <h3>Ignition</h3>
         <input class="tgl tgl-flat" id="navigation-ignition" type="checkbox"/>
         <label class="tgl-btn" for="navigation-ignition"></label>
+        <div class="text-left">
+          <p><strong>Consumption</strong>: <span class="inline-block"><span id="navigation-consumption">0</span> per cycle</span></p>
+          <p><strong>Speed</strong>: <span class="inline-block"><span id="navigation-speed">0</span> km/s</span></p>
+          <p><strong>Distance</strong>: <span class="inline-block"><span id="navigation-distance">0</span> km/s</span></p>
+        </div>
+        <hr>
+        <h3>Power  🔥</h3>
+        <p class="text-left"><strong>Basic thrusters</strong>: <span id="navigation-thursters-basic">1</span></p>
+        <p class="text-left" hidden><strong>Super thrusters</strong>: <span id="navigation-thursters-super">0</span></p>
+        <p class="text-left" hidden><strong>Mega thrusters</strong>: <span id="navigation-thursters-mega">0</span></p>
 
-        <p class="text-left"><strong>Consumption</strong>: <span class="inline-block"><span id="navigation-consumption">0</span> per cycle</span></p>
-        <p class="text-left"><strong>Speed</strong>: <span class="inline-block"><span id="navigation-speed">0</span> km/s</span></p>
       </div>
       <div class="panel panel--fuel">
         <h2>Fuel ⛽️</h2>
@@ -64,6 +77,16 @@
       </div>
     </div>
 
+    <aside id="game-over" hidden>
+      <header>
+        <h2>Congratulations! 🎉</h2>
+      </header>
+
+      <p>You have explored the whole galaxy! 👏</p>
+      <p>Thank you for playing.</p>
+      <p>Ricard</p>
+    </aside>
+
     <aside id="captains-log" hidden>
       <header>
         <h2>Captain's log</h2>
@@ -72,10 +95,8 @@
 
       <h4>1.0.0</h4>
       <p>Inital launch.</p>
-
       <hr>
     </aside>
-
 
     <footer>
       <div>
