@@ -36,39 +36,43 @@
     <div class="panels" id="panels">
       <div class="panel panel--navigation">
         <h2>Navigation 🎛</h2>
-
-        <h3>Ignition</h3>
         <input class="tgl tgl-flat" id="navigation-ignition" type="checkbox"/>
         <label class="tgl-btn" for="navigation-ignition"></label>
         <div class="text-left">
           <p><strong>Consumption</strong>: <span class="inline-block"><span id="navigation-consumption">0</span> per cycle</span></p>
           <p><strong>Speed</strong>: <span class="inline-block"><span id="navigation-speed">0</span> km/s</span></p>
-          <p><strong>Distance</strong>: <span class="inline-block"><span id="navigation-distance">0</span> km/s</span></p>
+          <p><strong>Travelled</strong>: <span class="inline-block"><span id="navigation-travelled">0</span> km/s</span></p>
         </div>
         <hr>
-        <h3>Power  🔥</h3>
-        <p class="text-left"><strong>Basic thrusters</strong>: <span id="navigation-thursters-basic">1</span></p>
-        <p class="text-left" hidden><strong>Super thrusters</strong>: <span id="navigation-thursters-super">0</span></p>
-        <p class="text-left" hidden><strong>Mega thrusters</strong>: <span id="navigation-thursters-mega">0</span></p>
+        <div class="text-left">
+          <h3>Power 🔥</h3>
+          <p><strong>Basic thrusters</strong>: <span id="navigation-thursters-basic">1</span></p>
+          <div id="navigation-thursters-basic-buttons" hidden>
+            <p><strong>Cost</strong>: <span id="navigation-thursters-basic-cost">0</span> fuel</p>
+            <button type="button" class="btn btn--success" id="navigation-thursters-basic-add" title="Add basic thrusters" disabled>Add</button>
+            <button type="button" class="btn btn--danger" id="navigation-thursters-basic-remove" title="Add basic thrusters" disabled>Remove</button>
+          </div>
+          <p hidden><strong>Super thrusters</strong>: <span id="navigation-thursters-super">0</span></p>
+          <p hidden><strong>Mega thrusters</strong>: <span id="navigation-thursters-mega">0</span></p>
+        </div>
 
       </div>
       <div class="panel panel--fuel">
         <h2>Fuel ⛽️</h2>
         <p>
-          <button type="button" class="btn btn--primary" id="fuel-produce">Produce fuel</button>
+          <button type="button" class="btn btn--success" id="fuel-produce">Produce fuel</button>
         </p>
         <div id="fuel-capacity-gauge" class="gauge-container"></div>
         <p>
-          <span id="fuel-total">0</span> of <span id="fuel-capacity">0</span>
+          <span id="fuel-total">0</span> of <span id="fuel-capacity">0</span> m³
         </p>
         <p>
           <span id="fuel-percentage">0</span>% capacity
         </p>
         <hr>
-
         <div id="fuel-auto-producers-wrapper" class="text-left" hidden>
-          <p>Auto producers: <span id="fuel-auto-producers">0</span></p>
-          <p>Cost: <span id="fuel-auto-producers-cost">0</span> fuel</p>
+          <p><strong>Auto producers</strong>: <span id="fuel-auto-producers">0</span></p>
+          <p><strong>Cost</strong>: <span id="fuel-auto-producers-cost">0</span> fuel</p>
           <p>
             <button type="button" class="btn btn--success" id="fuel-auto-producers-add" title="Add auto producer" disabled>Add</button>
             <button type="button" class="btn btn--danger" id="fuel-auto-producers-remove" title="Remove auto producer" disabled>Remove</button>

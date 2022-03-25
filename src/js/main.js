@@ -29,8 +29,18 @@ function updateSpeed() {
     _.navigation.speed = 0;
   }
 
-  $.navigationSpeed.innerText = _.navigation.speed.toFixed(0);
+  // BASIC
+  $.navigationThurstersBasicCost.innerText = _.navigation.thursters.basicCost;
+  $.navigationThurstersBasicAdd.disabled = !((_.fuel.total >= _.navigation.thursters.basic));
+  $.navigationThurstersBasicRemove.disabled = !(_.navigation.thursters.basic > 0);
 
+  if (_.fuel.total >= _.fuel.autoProducerCost) {
+    $.fuelAutoProducersAdd.disabled = false;
+  } else {
+    $.fuelAutoProducersAdd.disabled = true;
+  }
+
+  $.navigationSpeed.innerText = _.navigation.speed.toFixed(0);
   $.navigationThurstersBasic.innerText = _.navigation.thursters.basic;
   $.navigationThurstersSuper.innerText = _.navigation.thursters.super;
   $.navigationThurstersMega.innerText = _.navigation.thursters.mega;
@@ -48,11 +58,7 @@ function updateFuel() {
     $.fuelAutoProducersRemove.disabled = true;
   }
 
-  if (_.fuel.total >= _.fuel.autoProducerCost) {
-    $.fuelAutoProducersAdd.disabled = false;
-  } else {
-    $.fuelAutoProducersAdd.disabled = true;
-  }
+  $.fuelAutoProducersAdd.disabled = !((_.fuel.total >= _.fuel.autoProducerCost));
 
   if (_.fuel.total >= _.fuel.capacity) {
     _.fuel.total = _.fuel.capacity;
@@ -88,6 +94,16 @@ function removeAutoProducer() {
   _.fuel.total += _.fuel.autoProducerCost;
 }
 
+function addThrustersBasic() {
+  _.navigation.thursters.basic += 1;
+  _.navigation.thursters.basicCost = costCalculator(_.navigation.thursters.basic, 2);
+}
+
+function removeThrustersBasic() {
+  _.navigation.thursters.basic -= 1;
+  _.navigation.thursters.basicCost = costCalculator(_.navigation.thursters.basic, 2);
+}
+
 function setEventListeners() {
   $.captainsLogClose.addEventListener('click', toggleCapitansLog);
   $.version.addEventListener('click', (domEvent) => {
@@ -107,6 +123,9 @@ function setEventListeners() {
   $.fuelAutoProducersAdd.addEventListener('click', addAutoProducer);
   $.fuelAutoProducersRemove.addEventListener('click', removeAutoProducer);
 
+  $.navigationThurstersBasicAdd.addEventListener('click', addThrustersBasic);
+  $.navigationThurstersBasicRemove.addEventListener('click', removeThrustersBasic);
+
   $.saveGame.addEventListener('click', () => {
     saveGame(_);
   });
@@ -114,9 +133,12 @@ function setEventListeners() {
 }
 
 function checkUpgrades() {
-  // FUEL
-  if (_.fuel.total >= _.fuel.autoProducerUnlock) {
+  if (_.navigation.travelled >= _.upgrades.autoProducers) {
     $.fuelAutoProducersWrapper.hidden = false;
+  }
+
+  if (_.navigation.travelled >= _.upgrades.thrusters) {
+    $.navigationThurstersBasicButtons.hidden = false;
   }
 }
 
@@ -166,7 +188,7 @@ function updateProgress() {
   _.galaxy.explored += _.navigation.speed;
 
   // setInterval is 10, diving per 100 should give us 1 scond
-  _.navigation.distance += +(_.navigation.speed / 100).toFixed(3);
+  _.navigation.travelled += +(_.navigation.speed / 100).toFixed(3);
 
   if (_.galaxy.explored >= _.galaxy.total) {
     _.galaxy.explored = _.galaxy.total;
@@ -177,11 +199,11 @@ function updateProgress() {
     gameOver();
   }
 
-  const percentage = ((_.galaxy.explored * 100) / _.galaxy.total).toFixed(0);
+  const percentage = ((_.galaxy.explored * 100) / _.galaxy.total);
 
-  $.navigationDistance.innerText = _.navigation.distance.toFixed(0);
-  $.progressValue.innerText = percentage;
-  $.progressBar.style.width = `${percentage}%`;
+  $.navigationTravelled.innerText = _.navigation.travelled.toFixed(0);
+  $.progressValue.innerText = percentage.toFixed(3);
+  $.progressBar.style.width = `${percentage.toFixed(0)}%`;
 }
 
 function init() {
@@ -197,7 +219,7 @@ function init() {
   }, 10);
   saveGameInterval = setInterval(() => {
     saveGame(_);
-  }, 60 * 5 * 1000);
+  }, 30 * 1000); // Every 30"
   twemoji.parse(document.body);
 }
 

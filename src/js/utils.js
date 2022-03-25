@@ -2,13 +2,13 @@ import $ from './elements';
 
 const projectKey = 'space-game';
 
-export function costCalculator(level) {
+export function costCalculator(level, multiplier = 1.5) {
   let value = level;
 
   if (level === 0) {
     value = 1;
   }
-  return +(1.5 ** value + 5).toFixed(2);
+  return +(multiplier ** value + 5).toFixed(2);
 }
 
 export function loadSavedGame(_) {
